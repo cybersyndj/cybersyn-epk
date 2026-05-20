@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cybersyn — Electronic Press Kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #080808;
+    --off-black: #111111;
+    --panel: #141414;
+    --hot-pink: #FF2D78;
+    --lime: #CBFF4D;
+    --white: #F0EDE6;
+    --muted: #666660;
+    --border: rgba(255,255,255,0.08);
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: var(--hot-pink); }
+
+  /* ========= LAYOUT ========= */
+  .page { max-width: 900px; margin: 0 auto; padding: 0 2rem 6rem; }
+
+  /* ========= HERO ========= */
+  .hero {
+    border-bottom: 1px solid var(--border);
+    padding: 4rem 0 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: end;
+  }
+
+  .hero-left {}
+
+  .tag-line {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--hot-pink);
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+
+  .hero-name {
+    font-family: var(--font-display);
+    font-size: clamp(72px, 12vw, 120px);
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    color: var(--white);
+  }
+
+  .hero-name span {
+    display: block;
+    color: var(--lime);
+  }
+
+  .hero-subtitle {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 1.5rem;
+    letter-spacing: 0.08em;
+  }
+
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .hero-photo-frame {
+    position: relative;
+    aspect-ratio: 3/4;
+    background: var(--panel);
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .hero-photo-frame::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, var(--black) 0%, transparent 50%);
+    z-index: 1;
+  }
+
+  .hero-photo-frame img {
+    width: 100%; height: 100%; object-fit: cover;
+    display: block;
+    filter: grayscale(20%) contrast(1.1);
+  }
+
+  .photo-placeholder {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+    background: var(--panel);
+  }
+
+  .photo-placeholder p {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-align: center;
+    padding: 0 1rem;
+  }
+
+  .photo-placeholder .upload-icon {
+    width: 48px; height: 48px;
+    border: 1px solid var(--muted);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    color: var(--muted);
+  }
+
+  /* ========= PILL TAGS ========= */
+  .pill-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 2rem;
+  }
+
+  .pill {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--white);
+    white-space: nowrap;
+  }
+
+  .pill.pink { border-color: var(--hot-pink); color: var(--hot-pink); }
+  .pill.lime { border-color: var(--lime); color: var(--lime); }
+
+  /* ========= SECTION STRUCTURE ========= */
+  .section {
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--hot-pink);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(40px, 6vw, 64px);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ========= BIO ========= */
+  .bio-text {
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--white);
+    max-width: 660px;
+    font-weight: 300;
+  }
+
+  .bio-text em {
+    font-style: italic;
+    color: var(--lime);
+    font-weight: 400;
+  }
+
+  /* ========= MARICOTECA ========= */
+  .maricoteca-block {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--hot-pink);
+    padding: 2rem;
+    margin-top: 1.5rem;
+  }
+
+  .maricoteca-title {
+    font-family: var(--font-display);
+    font-size: 36px;
+    color: var(--hot-pink);
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.04em;
+  }
+
+  .maricoteca-members {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+
+  .maricoteca-text {
+    font-size: 15px;
+    line-height: 1.75;
+    font-weight: 300;
+    color: rgba(240,237,230,0.85);
+  }
+
+  /* ========= MIXES GRID ========= */
+  .mixes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .mix-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 1.25rem;
+    transition: border-color 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: var(--white);
+  }
+
+  .mix-card:hover { border-color: var(--lime); color: var(--white); }
+
+  .mix-number {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+  }
+
+  .mix-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    line-height: 1.1;
+    letter-spacing: 0.03em;
+  }
+
+  .mix-meta {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    margin-top: auto;
+  }
+
+  .mix-arrow {
+    font-size: 16px;
+    color: var(--lime);
+    margin-top: 0.75rem;
+    display: inline-block;
+    transition: transform 0.2s;
+  }
+
+  .mix-card:hover .mix-arrow { transform: translateX(4px); }
+
+  /* ========= EVENTS ========= */
+  .events-list {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .event-row {
+    display: grid;
+    grid-template-columns: 100px 1fr auto;
+    align-items: baseline;
+    gap: 1.5rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .event-date {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  .event-name {
+    font-weight: 400;
+    font-size: 15px;
+  }
+
+  .event-name span {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    margin-left: 8px;
+  }
+
+  .event-badge {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border: 1px solid var(--hot-pink);
+    color: var(--hot-pink);
+    white-space: nowrap;
+  }
+
+  /* ========= LINKS / CONTACT ========= */
+  .links-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .link-card {
+    border: 1px solid var(--border);
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: background 0.2s, border-color 0.2s;
+    text-decoration: none;
+    color: var(--white);
+  }
+
+  .link-card:hover { background: var(--panel); border-color: rgba(255,255,255,0.25); color: var(--white); }
+
+  .link-platform {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .link-name {
+    font-family: var(--font-display);
+    font-size: 22px;
+    letter-spacing: 0.03em;
+    line-height: 1.1;
+  }
+
+  .link-url {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: auto;
+    padding-top: 0.75rem;
+    word-break: break-all;
+  }
+
+  /* ========= BOOKING ========= */
+  .booking-block {
+    background: var(--hot-pink);
+    padding: 2.5rem;
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .booking-text {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 5vw, 48px);
+    color: var(--black);
+    line-height: 1;
+    letter-spacing: 0.02em;
+  }
+
+  .booking-text small {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+    color: rgba(0,0,0,0.6);
+  }
+
+  .booking-contact {
+    text-align: right;
+  }
+
+  .booking-contact a {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--black);
+    letter-spacing: 0.05em;
+    text-decoration: underline;
+  }
+
+  .booking-contact a:hover { color: var(--off-black); }
+
+  .booking-note {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: rgba(0,0,0,0.5);
+    margin-top: 0.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* ========= FOOTER ========= */
+  .footer {
+    padding: 2rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-name {
+    font-family: var(--font-display);
+    font-size: 18px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  .footer-note {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+
+  /* ========= DIVIDER MARQUEE ========= */
+  .marquee-strip {
+    background: var(--lime);
+    padding: 0.5rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 3rem -2rem;
+  }
+
+  .marquee-inner {
+    display: inline-block;
+    animation: marquee 18s linear infinite;
+  }
+
+  .marquee-inner span {
+    font-family: var(--font-display);
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    color: var(--black);
+    padding: 0 1.5rem;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ========= STATS ROW ========= */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: 2rem;
+  }
+
+  .stat-cell {
+    background: var(--black);
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 48px;
+    color: var(--lime);
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 0.4rem;
+  }
+
+  /* ========= RESPONSIVE ========= */
+  @media (max-width: 640px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { order: -1; max-width: 280px; }
+    .mixes-grid { grid-template-columns: 1fr; }
+    .links-grid { grid-template-columns: 1fr 1fr; }
+    .event-row { grid-template-columns: 1fr; gap: 0.25rem; }
+    .booking-block { grid-template-columns: 1fr; }
+    .booking-contact { text-align: left; }
+    .stats-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-left">
+      <p class="tag-line">Electronic Press Kit — 2025/26</p>
+      <h1 class="hero-name">
+        Cyber<span>syn</span>
+      </h1>
+      <p class="hero-subtitle">DC / Santiago de Chile &nbsp;·&nbsp; DJ &nbsp;·&nbsp; Nightlife / Maricoteca</p>
+      <div class="pill-row">
+        <span class="pill lime">Neoperreo</span>
+        <span class="pill">Dembow</span>
+        <span class="pill">Guaracha</span>
+        <span class="pill pink">Latin Club</span>
+        <span class="pill">Indie Pop</span>
+        <span class="pill">Global Bass</span>
+        <span class="pill">Underground</span>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-photo-frame" style="height: 340px;">
+        <div class="photo-placeholder">
+          <div class="upload-icon">+</div>
+          <p>Drop press photo here<br>or replace src in HTML</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-row">
+    <div class="stat-cell">
+      <span class="stat-num">DC</span>
+      <span class="stat-label">Based in</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">2023</span>
+      <span class="stat-label">First RA Event</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">3</span>
+      <span class="stat-label">Maricoteca Residents</span>
+    </div>
+  </div>
+
+  <!-- BIO -->
+  <div class="section">
+    <p class="section-label">About</p>
+    <h2 class="section-title">El DJ</h2>
+    <p class="bio-text">
+      Born in Santiago, Chile and raised in the DMV, Cybersyn is a DC-based DJ whose sets move across <em>un universo</em> of Latin sounds — from indie pop and dembow to neoperreo, club <em>y más</em>. He is a co-founder and resident DJ of Maricoteca, a queer Latine dance party in DC centering alternative, indie, and underground sounds from Latin America and beyond. His approach to DJing and nightlife is shaped by years in community organizing and a belief in dance floors as spaces for community, joy, and collective liberation.
+    </p>
+
+    <!-- MARICOTECA -->
+    <div class="maricoteca-block">
+      <div class="maricoteca-title">Maricoteca</div>
+      <div class="maricoteca-members">Cybersyn · El Sucio · Kristy la rAt</div>
+      <p class="maricoteca-text">
+        A DC-based queer and trans Latine dance party <em>y crew</em> centering alternative, indie, and underground sounds from Latin America and beyond. Rooted in collective care <em>y alegre rebeldía</em>, Maricoteca creates spaces for our communities to move, connect, <em>y celebrar</em> on the dance floor — blending neoperreo, dembow, guaracha, Latin club, and global bass while centering cultural connection and experimentation.
+      </p>
+      <div class="pill-row" style="margin-top:1rem;">
+        <span class="pill">RA Pick 2025</span>
+        <span class="pill pink">Doubles</span>
+        <span class="pill">DC9</span>
+        <span class="pill">Zeba Bar</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MARQUEE -->
+  <div class="marquee-strip">
+    <div class="marquee-inner">
+      <span>NEOPERREO</span><span>·</span>
+      <span>DEMBOW</span><span>·</span>
+      <span>GUARACHA</span><span>·</span>
+      <span>LATIN CLUB</span><span>·</span>
+      <span>QUEER LATINE DC</span><span>·</span>
+      <span>MARICOTECA</span><span>·</span>
+      <span>ALEGRE REBELDÍA</span><span>·</span>
+      <span>GLOBAL BASS</span><span>·</span>
+      <span>INDIE POP</span><span>·</span>
+      <span>PERREO</span><span>·</span>
+      <span>NEOPERREO</span><span>·</span>
+      <span>DEMBOW</span><span>·</span>
+      <span>GUARACHA</span><span>·</span>
+      <span>LATIN CLUB</span><span>·</span>
+      <span>QUEER LATINE DC</span><span>·</span>
+      <span>MARICOTECA</span><span>·</span>
+      <span>ALEGRE REBELDÍA</span><span>·</span>
+      <span>GLOBAL BASS</span><span>·</span>
+      <span>INDIE POP</span><span>·</span>
+      <span>PERREO</span><span>·</span>
+    </div>
+  </div>
+
+  <!-- MIXES -->
+  <div class="section">
+    <p class="section-label">Music</p>
+    <h2 class="section-title">Mixes & Mixtapes</h2>
+    <div class="mixes-grid">
+      <a class="mix-card" href="https://soundcloud.com/chilenoqueer/delapocalipsis" target="_blank">
+        <span class="mix-number">01 — 2026</span>
+        <div class="mix-title">...del apocalipsis mixtape</div>
+        <div class="mix-meta">SoundCloud &nbsp;·&nbsp; 2026</div>
+        <span class="mix-arrow">→</span>
+      </a>
+      <a class="mix-card" href="https://soundcloud.com/chilenoqueer/estoys-gays-estan-tratando-de-asesinarme" target="_blank">
+        <span class="mix-number">02 — 2024</span>
+        <div class="mix-title">estos gays están tratando de asesinarme</div>
+        <div class="mix-meta">SoundCloud &nbsp;·&nbsp; Jun 2024</div>
+        <span class="mix-arrow">→</span>
+      </a>
+      <a class="mix-card" href="https://soundcloud.com/chilenoqueer/papi-club-mixtape" target="_blank">
+        <span class="mix-number">03 — 2024</span>
+        <div class="mix-title">Papi Club Mixtape</div>
+        <div class="mix-meta">SoundCloud &nbsp;·&nbsp; Jan 2024</div>
+        <span class="mix-arrow">→</span>
+      </a>
+      <a class="mix-card" href="https://soundcloud.com/chilenoqueer/01-reggaeton-alternativo-mixtape-1" target="_blank">
+        <span class="mix-number">04 — 2023</span>
+        <div class="mix-title">Reggaeton Alternativo Mixtape</div>
+        <div class="mix-meta">SoundCloud &nbsp;·&nbsp; Mar 2023</div>
+        <span class="mix-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- PAST EVENTS -->
+  <div class="section">
+    <p class="section-label">Live</p>
+    <h2 class="section-title">Past Events</h2>
+    <div class="events-list">
+      <div class="event-row">
+        <span class="event-date">Apr 25, 2025</span>
+        <span class="event-name">MARICOTENDER <span>Doubles · Washington DC</span></span>
+        <span class="event-badge">RA Pick</span>
+      </div>
+      <div class="event-row">
+        <span class="event-date">Mar 21, 2025</span>
+        <span class="event-name">MARICOTECA <span>DC9 · Washington DC</span></span>
+        <span class="event-badge">RA Pick</span>
+      </div>
+      <div class="event-row">
+        <span class="event-date">Feb 8, 2025</span>
+        <span class="event-name">ÁNDALE feat. Cybersyn <span>Sinners and Saints · DC</span></span>
+        <span class="event-date" style="text-align:right;"></span>
+      </div>
+      <div class="event-row">
+        <span class="event-date">Jan 25, 2025</span>
+        <span class="event-name">Medusoka ft. Rattlesnakke <span>DC9 · Washington DC</span></span>
+        <span class="event-date" style="text-align:right;"></span>
+      </div>
+      <div class="event-row">
+        <span class="event-date">Nov 1, 2024</span>
+        <span class="event-name">PERREO VAMPIRICO <span>Zeba Bar · Washington DC</span></span>
+        <span class="event-date" style="text-align:right;"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- LINKS -->
+  <div class="section">
+    <p class="section-label">Find Online</p>
+    <h2 class="section-title">Links</h2>
+    <div class="links-grid">
+      <a class="link-card" href="https://soundcloud.com/chilenoqueer" target="_blank">
+        <span class="link-platform">Stream</span>
+        <span class="link-name">SoundCloud</span>
+        <span class="link-url">soundcloud.com/chilenoqueer</span>
+      </a>
+      <a class="link-card" href="https://ra.co/dj/cybersyn" target="_blank">
+        <span class="link-platform">Profile</span>
+        <span class="link-name">Resident Advisor</span>
+        <span class="link-url">ra.co/dj/cybersyn</span>
+      </a>
+      <a class="link-card" href="https://www.instagram.com/chilenoqueer" target="_blank">
+        <span class="link-platform">Follow</span>
+        <span class="link-name">Instagram</span>
+        <span class="link-url">@chilenoqueer</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- BOOKING CTA -->
+  <div class="booking-block">
+    <div class="booking-text">
+      <small>Booking Inquiries</small>
+      Available for bookings — DJ sets, residencies & events
+    </div>
+    <div class="booking-contact">
+      <a href="https://ra.co/dj/cybersyn" target="_blank">Book via RA →</a>
+      <p class="booking-note">Washington DC & beyond</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span class="footer-name">CYBERSYN EPK</span>
+    <span class="footer-note">DC · 2025–26 &nbsp;·&nbsp; chilenoqueer</span>
+  </div>
+
+</div>
+</body>
+</html>
